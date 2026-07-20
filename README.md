@@ -76,6 +76,7 @@ with its own README, an importable/reference definition, and a mockup.
 |---|---|---|
 | **Make.com** | [Lead Enrichment & Routing](MAKE%20-%20LEAD%20ENRICHMENT/) | Form → AI qualify + score → log every lead → route Hot to Slack, Warm to auto-reply |
 | **Zapier** | [Support Email Triage](ZAPIER%20-%20SUPPORT%20TRIAGE/) | New email → AI categorize + draft reply → **Gmail draft a human approves** → log + Slack |
+| **Zapier** | [Content Repurposer](ZAPIER%20-%20CONTENT%20REPURPOSER/) | New blog post → AI writes LinkedIn + X thread + newsletter → **3 Google Docs drafts to review** → log + Slack |
 | **Power Automate** | [Weekly Operations Digest](POWER%20AUTOMATE%20-%20OPS%20DIGEST/) | Mon 07:00 → read Excel table → AI summary → post to Teams + email the ops leads |
 
 ---
