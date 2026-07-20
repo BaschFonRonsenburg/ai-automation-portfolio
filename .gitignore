@@ -2,6 +2,7 @@
 /PC BUILD ADVISOR/
 /WEEKLY JOB REPORT/
 /COMPETITIVE EDGE CAMPAIGN/
+/RIGFORGE STOREFRONT/
 
 # Secrets & local env (never commit)
 .env

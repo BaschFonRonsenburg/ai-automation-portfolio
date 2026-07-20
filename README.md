@@ -81,6 +81,24 @@ with its own README, an importable/reference definition, and a mockup.
 
 ---
 
+## Front-End / Web
+
+Beyond automation, I build polished, responsive front-ends. This one is a design/UX showcase.
+
+### 🛒 RigForge — PC-parts storefront — *React front-end demo*
+A Shopify **Dawn**-style e-commerce storefront for a fictional PC-parts & custom-rig retailer, built as a
+**React + Vite** single-page app. Faceted catalog filtering and sort, product pages with variant selection,
+spec tables and **benchmark bars**, and a working cart — slide-in drawer plus a cart page — that persists via
+**localStorage**. An ambient animated **circuit-light** background sets the "inside the machine" mood, and
+every product image is a hand-drawn inline **SVG** (self-contained, license-safe). It's a front-end demo, so
+checkout is illustrative — no payments.
+
+**Stack:** React · Vite · React Router · hand-authored CSS design system
+&nbsp;•&nbsp; **Live:** https://rigforge-storefront.vercel.app
+&nbsp;•&nbsp; **Repo:** https://github.com/BaschFonRonsenburg/rigforge-storefront
+
+---
+
 ## Capabilities
 
 - **Automation platforms:** n8n (deep — self-hosted & cloud, custom code nodes) · Make.com · Zapier ·
@@ -89,6 +107,8 @@ with its own README, an importable/reference definition, and a mockup.
   human-in-the-loop review
 - **Apps & delivery:** Gmail / Outlook · Google Sheets / Excel · Slack / Teams · webhooks & forms ·
   designed HTML email · PDF reports · styled spreadsheets
+- **Front-end / web:** React (Vite · React Router) · responsive CSS design systems · accessible UI ·
+  canvas visual effects
 - **Also:** Python · Streamlit chatbots · web scraping/enrichment · scheduled & event-driven workflows
 
 ## How I work
