@@ -21,6 +21,12 @@ local currency.
 
 ![PC Build Advisor](assets/pc-build-advisor.svg)
 
+**How it works**
+1. You ask in plain English — a budget and what the PC is for (gaming, editing, office).
+2. The model applies real build rules — budget split across parts and compatibility — to choose components.
+3. It returns one side-by-side Intel/NVIDIA vs AMD table: local-currency prices, a pick + reason per part, store suggestions, one-click price-check links, and an upgrade path.
+4. Ask follow-ups like a chat — answers stream in live.
+
 **Stack:** Python · Streamlit · Google Gemini &nbsp;•&nbsp; **Repo:** https://github.com/BaschFonRonsenburg/pc-build-advisor
 
 ---
@@ -32,6 +38,12 @@ HTML report** with a Trust-score chart and a styled spreadsheet attached.
 
 ![Weekly Job Report](assets/weekly-job-report.svg)
 
+**How it works**
+1. On a set schedule it pulls fresh listings from three job boards at once.
+2. It keeps only part-time / contract AI-automation roles, removes duplicates, and drops the noise.
+3. Each employer gets a 0–100 Trust score for legitimacy — every point backed by a stated reason.
+4. The model writes a one-line summary per role, then it emails a designed report with a Trust-score chart plus a styled spreadsheet attached.
+
 **Stack:** n8n · Google Gemini · Gmail · multi-source job APIs &nbsp;•&nbsp; **Repo:** https://github.com/BaschFonRonsenburg/n8n-ai-automation-job-report
 
 ---
@@ -42,6 +54,12 @@ prioritized action plan **and** a ready-to-post ad campaign, then emails a **the
 re-skins to match the company's industry. Everything is a draft for human review.
 
 ![Competitive Edge Campaign](assets/competitive-edge.svg)
+
+**How it works**
+1. You submit one company website in a simple web form.
+2. It reads that site to understand the business, then finds and reads real competitors.
+3. The model maps where the company is losing ground and writes prioritized moves plus a positioning angle.
+4. It drafts a full campaign — email + social posts — and emails a polished PDF that re-skins to the company's industry. Everything is a draft for your review.
 
 **Stack:** n8n · Google Gemini · DuckDuckGo · PDFShift · Gmail &nbsp;•&nbsp; **Repo:** https://github.com/BaschFonRonsenburg/marketing-automation
 
@@ -72,13 +90,22 @@ with its own README, an importable/reference definition, and a mockup.
 
 ## How I work
 
-Each automation is built so a non-technical owner can run it: clear README, credentials kept out of the
-code (bring your own keys), free-tier friendly, and **retargetable to a new client by changing a field
-or two**. Anything that touches a customer is a **draft for human approval** unless you ask otherwise.
+**Start lean, prove it works, then scale it to fit.** The demos here run on free tiers so you can see the
+approach working — but that's the floor, not the ceiling.
+
+- **Built around your workflow** — I map the process you actually run and wire in the tools you already
+  use (email, sheets, Slack, Teams, your CRM). The automation fits your business; it isn't a template.
+- **Proven first, then scaled** — free tiers to prove it at zero cost, then production when you're ready:
+  higher volume, premium connectors, more capable models, and monitoring — sized to what you need.
+- **Yours to own** — clear docs and your own keys, so nothing is locked to me. A non-technical team can
+  run it, and it grows with you.
 
 ## Contact
 
-**Ryan** — haban.johnryandc@gmail.com
+**John Ryan Haban** — AI Automation Specialist
+
+- **Email:** haban.johnryandc@gmail.com
+- **OnlineJobs.ph:** https://www.onlinejobs.ph/jobseekers/info/2372797
 
 <sub>Project previews are illustrative mockups; each project's README explains how to render real output.
 The Make/Zapier/Power Automate demos live in this folder; the three featured projects are public GitHub

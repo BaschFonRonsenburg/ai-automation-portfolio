@@ -166,6 +166,28 @@
     padding: 0 2px; flex: none; opacity: 0.7;
   }
 
+  /* how-it-works step list inside a card */
+  .how-it { display: flex; flex-direction: column; gap: 12px; }
+  .how-it-lab {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    font-weight: 600; color: var(--muted);
+  }
+  ol.steps {
+    list-style: none; margin: 0; padding: 0; counter-reset: step;
+    display: grid; gap: 11px;
+  }
+  ol.steps li {
+    counter-increment: step;
+    display: grid; grid-template-columns: 26px 1fr; gap: 12px; align-items: start;
+    font-size: 14.5px; line-height: 1.5; color: var(--body); max-width: 68ch;
+  }
+  ol.steps li::before {
+    content: counter(step, decimal-leading-zero);
+    font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--accent-deep);
+    padding-top: 2px; font-variant-numeric: tabular-nums;
+  }
+  ol.steps li b { color: var(--ink); font-weight: 600; }
+
   .chips { display: flex; flex-wrap: wrap; gap: 8px; }
   .chip {
     font-family: var(--mono); font-size: 12px; color: var(--body);
@@ -220,13 +242,23 @@
   .contact { text-align: center; padding: 96px 0; }
   .contact h2 { font-size: clamp(1.9rem, 4vw, 2.6rem); letter-spacing: -0.02em; }
   .contact p { color: var(--muted); margin: 14px auto 0; max-width: 48ch; }
-  .mail {
-    display: inline-flex; align-items: center; gap: 10px; margin-top: 30px;
-    font-family: var(--mono); font-size: 1.05rem; font-weight: 700; text-decoration: none;
-    color: var(--ink); background: var(--accent); border-radius: 10px; padding: 15px 26px;
-    transition: transform .15s ease, background .15s ease;
+  .contact .who {
+    margin-top: 26px; font-family: var(--mono); font-size: 14px; letter-spacing: 0.02em;
+    color: var(--ink);
   }
+  .contact .who strong { font-weight: 700; }
+  .contact .who .role { color: var(--muted); }
+  .contact-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 26px; }
+  .mail, .btn-2 {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--mono); font-size: 1rem; font-weight: 700; text-decoration: none;
+    border-radius: 10px; padding: 14px 24px;
+    transition: transform .15s ease, background .15s ease, border-color .15s ease;
+  }
+  .mail { color: var(--ink); background: var(--accent); }
   .mail:hover { background: #ffb951; transform: translateY(-2px); }
+  .btn-2 { color: var(--ink); background: transparent; border: 1px solid var(--line); font-weight: 600; }
+  .btn-2:hover { border-color: var(--accent); color: var(--accent-deep); transform: translateY(-2px); }
 
   footer.foot { padding: 30px 0 48px; }
   footer.foot .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
@@ -307,6 +339,15 @@
           <span class="arrow">→</span>
           <div class="node output"><span class="n-kind">Deliver</span><span class="n-label">Side-by-side build table</span></div>
         </div>
+        <div class="how-it">
+          <span class="how-it-lab">How it works</span>
+          <ol class="steps">
+            <li>You ask in plain English — <b>a budget and what the PC is for</b> (gaming, editing, office).</li>
+            <li>The model applies real build rules — <b>budget split across parts and compatibility</b> — to choose components.</li>
+            <li>It returns one <b>side-by-side Intel/NVIDIA vs AMD table</b>: local-currency prices, a pick and reason per part, store suggestions, one-click price-check links, and an upgrade path.</li>
+            <li>Ask follow-ups like a chat — answers stream in live.</li>
+          </ol>
+        </div>
         <div class="chips">
           <span class="chip">Python</span><span class="chip">Streamlit</span><span class="chip">Google Gemini</span>
         </div>
@@ -335,6 +376,15 @@
           <div class="node action"><span class="n-kind">Score + write</span><span class="n-label">Trust score · Gemini</span></div>
           <span class="arrow">→</span>
           <div class="node output"><span class="n-kind">Deliver</span><span class="n-label">Email + Excel</span></div>
+        </div>
+        <div class="how-it">
+          <span class="how-it-lab">How it works</span>
+          <ol class="steps">
+            <li>On a set schedule it pulls fresh listings from <b>three job boards at once</b>.</li>
+            <li>It keeps only <b>part-time / contract AI-automation roles</b>, removes duplicates, and drops the noise.</li>
+            <li>Each employer gets a <b>0–100 Trust score</b> for legitimacy — every point backed by a stated reason.</li>
+            <li>The model writes a one-line summary per role, then it <b>emails a designed report</b> with a Trust-score chart plus a styled spreadsheet attached.</li>
+          </ol>
         </div>
         <div class="chips">
           <span class="chip">n8n</span><span class="chip">Google Gemini</span><span class="chip">Gmail</span><span class="chip">Multi-source APIs</span>
@@ -365,6 +415,15 @@
           <span class="arrow">→</span>
           <div class="node output"><span class="n-kind">Deliver</span><span class="n-label">Themed PDF by email</span></div>
         </div>
+        <div class="how-it">
+          <span class="how-it-lab">How it works</span>
+          <ol class="steps">
+            <li>You submit <b>one company website</b> in a simple web form.</li>
+            <li>It reads that site to understand the business, then <b>finds and reads real competitors</b>.</li>
+            <li>The model maps <b>where the company is losing ground</b> and writes prioritized moves plus a positioning angle.</li>
+            <li>It drafts a full campaign — email + social posts — and emails a <b>polished PDF that re-skins to the company's industry</b>. Everything is a draft for your review.</li>
+          </ol>
+        </div>
         <div class="chips">
           <span class="chip">n8n</span><span class="chip">Google Gemini</span><span class="chip">DuckDuckGo</span><span class="chip">PDFShift</span><span class="chip">Gmail</span>
         </div>
@@ -391,8 +450,9 @@
         <div class="mini">
           <span class="plat">Make.com</span>
           <h3>Lead Enrichment &amp; Routing</h3>
-          <p>A form lead comes in; AI qualifies and scores it, every lead is logged, and the hot ones
-            ping sales while warm ones get an auto-reply.</p>
+          <p>A form lead comes in; AI qualifies and scores it, every lead is logged to a sheet, and the
+            hot ones ping sales in Slack while warm ones get an AI-drafted auto-reply — no lead sits
+            unseen in an inbox.</p>
           <div class="flow">
             <div class="node trigger"><span class="n-kind">Form</span><span class="n-label">Lead in</span></div>
             <span class="arrow">→</span>
@@ -406,7 +466,7 @@
           <span class="plat">Zapier</span>
           <h3>Support Email Triage</h3>
           <p>New support email → AI categorizes it and drafts a reply → a Gmail draft a human approves
-            before it ever reaches the customer.</p>
+            before it ever reaches the customer. Clears the triage backlog without auto-sending a word.</p>
           <div class="flow">
             <div class="node trigger"><span class="n-kind">Email</span><span class="n-label">New ticket</span></div>
             <span class="arrow">→</span>
@@ -419,8 +479,9 @@
         <div class="mini">
           <span class="plat">Power Automate</span>
           <h3>Weekly Operations Digest</h3>
-          <p>Every Monday it reads an Excel metrics table, has AI summarize the week, and posts the
-            digest to Teams and email — the status update writes itself.</p>
+          <p>Every Monday it reads an Excel metrics table, has AI summarize the week into headline,
+            wins, risks and next actions, and posts the digest to Teams and email — the status update
+            writes itself.</p>
           <div class="flow">
             <div class="node trigger"><span class="n-kind">Mon 07:00</span><span class="n-label">Excel</span></div>
             <span class="arrow">→</span>
@@ -463,27 +524,30 @@
     <div class="wrap">
       <div class="sec-head">
         <p class="eyebrow">How I work</p>
-        <h2>Built to hand over, not to babysit.</h2>
-        <p>Every automation is made for a non-technical owner to actually run.</p>
+        <h2>Start lean, prove it works, then scale it to fit.</h2>
+        <p>The demos here run on free tiers so you can see the approach working — but that's the floor,
+          not the ceiling. With the right resources, each one scales into a production tool built around
+          your business.</p>
       </div>
       <div class="how-grid">
         <div class="how-item">
           <span class="idx">01</span>
-          <h3>Yours to run</h3>
-          <p>A clear README, credentials kept out of the code — you bring your own keys — and a design
-            that retargets to a new client by changing a field or two.</p>
+          <h3>Built around your workflow</h3>
+          <p>I map the process you actually run and wire in the tools you already use — email, sheets,
+            Slack, Teams, your CRM. The automation fits your business; it isn't a template you bend to fit.</p>
         </div>
         <div class="how-item">
           <span class="idx">02</span>
-          <h3>Free-tier first</h3>
-          <p>Everything is built to prove out on free API tiers before anyone pays for scale, so you can
-            see it work with no upfront cost.</p>
+          <h3>Proven first, then scaled</h3>
+          <p>I stand it up on free tiers so you see it working at zero cost. When it's proven, we take it
+            to production — higher volume, premium connectors, more capable models, monitoring — sized to
+            exactly what you need.</p>
         </div>
         <div class="how-item">
           <span class="idx">03</span>
-          <h3>Human in the loop</h3>
-          <p>Anything a customer sees is a draft for approval by default. The automation does the work;
-            you decide what goes out.</p>
+          <h3>Yours to own</h3>
+          <p>Clear documentation and your own keys, so nothing is locked to me. A non-technical team can
+            run it day to day, and it grows with you as the business does.</p>
         </div>
       </div>
     </div>
@@ -494,14 +558,20 @@
       <p class="eyebrow">Let's build</p>
       <h2>Have a repetitive process worth automating?</h2>
       <p>Tell me the workflow you keep doing by hand. I'll show you what it looks like when it runs itself.</p>
-      <a class="mail" href="mailto:haban.johnryandc@gmail.com">✦ haban.johnryandc@gmail.com</a>
+      <p class="who"><strong>John Ryan Haban</strong> <span class="role">· AI Automation Specialist</span></p>
+      <div class="contact-actions">
+        <a class="mail" href="mailto:haban.johnryandc@gmail.com">✦ Email me</a>
+        <a class="btn-2" href="https://www.onlinejobs.ph/jobseekers/info/2372797" target="_blank" rel="noopener">OnlineJobs profile ↗</a>
+        <!-- LinkedIn (temporarily restricted) — add back when live:
+        <a class="btn-2" href="LINKEDIN_URL" target="_blank" rel="noopener">LinkedIn ↗</a> -->
+      </div>
     </div>
   </section>
 </main>
 
 <footer class="foot">
   <div class="wrap">
-    <small>AI Automation — Portfolio · Ryan</small>
+    <small>AI Automation — Portfolio · John Ryan Haban</small>
     <small>Project pipelines shown are the real flow of each build. <a class="txt-link" href="https://github.com/BaschFonRonsenburg">github.com/BaschFonRonsenburg</a></small>
   </div>
 </footer>
