@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 720" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif">
+  <!-- page -->
+  <rect width="640" height="720" rx="10" fill="#f1f1ef"/>
+
+  <!-- window bar -->
+  <rect x="0" y="0" width="640" height="40" rx="10" fill="#e6e6e3"/>
+  <rect x="0" y="20" width="640" height="20" fill="#e6e6e3"/>
+  <circle cx="24" cy="20" r="6" fill="#ff5f57"/>
+  <circle cx="44" cy="20" r="6" fill="#febc2e"/>
+  <circle cx="64" cy="20" r="6" fill="#28c840"/>
+  <text x="320" y="25" text-anchor="middle" font-size="12" fill="#8a8a86">Zapier — Support Email Triage</text>
+
+  <text x="40" y="72" font-size="17" font-weight="800" fill="#201515">Support Email Triage</text>
+  <text x="40" y="92" font-size="12.5" fill="#6b6b67">New email → AI categorize + draft reply → Gmail draft (you approve) → log</text>
+
+  <!-- vertical connector -->
+  <line x1="80" y1="150" x2="80" y2="620" stroke="#d3d3cf" stroke-width="2"/>
+
+  <!-- step card helper -->
+  <!-- 1 trigger -->
+  <circle cx="80" cy="150" r="22" fill="#ea4335"/>
+  <text x="80" y="156" text-anchor="middle" font-size="16" fill="#ffffff">✉</text>
+  <rect x="120" y="122" width="480" height="56" rx="10" fill="#ffffff" stroke="#e2e2de"/>
+  <text x="138" y="144" font-size="11" font-weight="700" letter-spacing="1" fill="#ff4f00">TRIGGER · GMAIL</text>
+  <text x="138" y="166" font-size="13.5" font-weight="600" fill="#201515">New Email Matching Search  —  label:support</text>
+
+  <!-- 2 AI classify -->
+  <circle cx="80" cy="250" r="22" fill="#ff4f00"/>
+  <text x="80" y="256" text-anchor="middle" font-size="15" fill="#ffffff">✦</text>
+  <rect x="120" y="222" width="480" height="56" rx="10" fill="#ffffff" stroke="#e2e2de"/>
+  <text x="138" y="244" font-size="11" font-weight="700" letter-spacing="1" fill="#ff4f00">ACTION · WEBHOOKS → GEMINI</text>
+  <text x="138" y="266" font-size="13.5" font-weight="600" fill="#201515">Categorize + draft reply  →  { category, priority, reply }</text>
+
+  <!-- 3 filter / paths -->
+  <circle cx="80" cy="350" r="22" fill="#a15cff"/>
+  <text x="80" y="356" text-anchor="middle" font-size="15" fill="#ffffff">⑃</text>
+  <rect x="120" y="322" width="480" height="56" rx="10" fill="#ffffff" stroke="#e2e2de"/>
+  <text x="138" y="344" font-size="11" font-weight="700" letter-spacing="1" fill="#a15cff">PATHS · BY ZAPIER</text>
+  <text x="138" y="366" font-size="13.5" font-weight="600" fill="#201515">Urgent → Slack + draft   ·   Normal → draft only</text>
+
+  <!-- 4 gmail draft -->
+  <circle cx="80" cy="450" r="22" fill="#ea4335"/>
+  <text x="80" y="456" text-anchor="middle" font-size="15" fill="#ffffff">✎</text>
+  <rect x="120" y="422" width="480" height="56" rx="10" fill="#ffffff" stroke="#e2e2de"/>
+  <text x="138" y="444" font-size="11" font-weight="700" letter-spacing="1" fill="#ff4f00">ACTION · GMAIL</text>
+  <text x="138" y="466" font-size="13.5" font-weight="600" fill="#201515">Create Draft Reply  —  a human approves &amp; sends</text>
+
+  <!-- 5 log sheet -->
+  <circle cx="80" cy="550" r="22" fill="#0f9d58"/>
+  <text x="80" y="556" text-anchor="middle" font-size="15" fill="#ffffff">▤</text>
+  <rect x="120" y="522" width="480" height="56" rx="10" fill="#ffffff" stroke="#e2e2de"/>
+  <text x="138" y="544" font-size="11" font-weight="700" letter-spacing="1" fill="#0f9d58">ACTION · GOOGLE SHEETS</text>
+  <text x="138" y="566" font-size="13.5" font-weight="600" fill="#201515">Create Row  —  date, from, category, priority, status</text>
+
+  <!-- 6 slack (urgent only) -->
+  <circle cx="80" cy="640" r="20" fill="#4a154b"/>
+  <text x="80" y="646" text-anchor="middle" font-size="14" fill="#ffffff">#</text>
+  <rect x="120" y="616" width="480" height="48" rx="10" fill="#f6f2fb" stroke="#e6dcef"/>
+  <text x="138" y="636" font-size="11" font-weight="700" letter-spacing="1" fill="#4a154b">URGENT PATH · SLACK</text>
+  <text x="138" y="654" font-size="12.5" fill="#4a154b">Ping #support when priority = Urgent</text>
+
+  <!-- footer chips -->
+  <g font-size="11">
+    <rect x="40" y="684" width="120" height="24" rx="12" fill="#ffece2"/><text x="100" y="700" text-anchor="middle" fill="#c23e00">Zapier · 5-step Zap</text>
+    <rect x="168" y="684" width="150" height="24" rx="12" fill="#ffece2"/><text x="243" y="700" text-anchor="middle" fill="#c23e00">Human-in-the-loop drafts</text>
+  </g>
+</svg>

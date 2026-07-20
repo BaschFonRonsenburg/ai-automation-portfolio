@@ -1,0 +1,146 @@
+{
+  "name": "Lead Enrichment & Routing",
+  "flow": [
+    {
+      "id": 1,
+      "module": "gateway:CustomWebHook",
+      "version": 1,
+      "parameters": { "hook": "Lead intake webhook", "maxResults": 1 },
+      "mapper": {},
+      "metadata": {
+        "designer": { "x": 0, "y": 0 },
+        "restore": { "parameters": { "hook": { "label": "Lead intake webhook" } } },
+        "notes": "Trigger: a website/contact form POSTs { name, email, company, message } here."
+      }
+    },
+    {
+      "id": 2,
+      "module": "http:ActionSendData",
+      "version": 3,
+      "parameters": { "handleErrors": true, "useNewZLibDeCompress": true },
+      "mapper": {
+        "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent",
+        "method": "post",
+        "headers": [
+          { "name": "x-goog-api-key", "value": "{{connection.gemini_api_key}}" },
+          { "name": "Content-Type", "value": "application/json" }
+        ],
+        "bodyType": "raw",
+        "contentType": "application/json",
+        "data": "{\"contents\":[{\"parts\":[{\"text\":\"You are a B2B lead qualifier. Given this inbound lead, return ONLY compact JSON: {\\\"tier\\\":\\\"Hot|Warm|Cold\\\",\\\"score\\\":0-100,\\\"reason\\\":\\\"one sentence\\\",\\\"reply\\\":\\\"2-sentence friendly acknowledgement\\\"}. Lead -> name: {{1.name}}, company: {{1.company}}, email: {{1.email}}, message: {{1.message}}\"}]}]}",
+        "parseResponse": true
+      },
+      "metadata": {
+        "designer": { "x": 300, "y": 0 },
+        "notes": "AI qualify with Google Gemini (free tier). One call returns tier + score + reason + a draft reply."
+      }
+    },
+    {
+      "id": 3,
+      "module": "json:ParseJSON",
+      "version": 1,
+      "parameters": {},
+      "mapper": {
+        "json": "{{2.data.candidates[].content.parts[].text}}"
+      },
+      "metadata": {
+        "designer": { "x": 600, "y": 0 },
+        "notes": "Parse the model's JSON string into { tier, score, reason, reply }."
+      }
+    },
+    {
+      "id": 4,
+      "module": "google-sheets:addRow",
+      "version": 2,
+      "parameters": { "mode": "select", "insertUnformatted": false },
+      "mapper": {
+        "from": "drive",
+        "spreadsheetId": "REPLACE_WITH_SHEET_ID",
+        "sheetId": "Leads",
+        "values": {
+          "0": "{{formatDate(now; 'YYYY-MM-DD HH:mm')}}",
+          "1": "{{1.name}}",
+          "2": "{{1.company}}",
+          "3": "{{1.email}}",
+          "4": "{{3.tier}}",
+          "5": "{{3.score}}",
+          "6": "{{3.reason}}"
+        }
+      },
+      "metadata": {
+        "designer": { "x": 900, "y": 0 },
+        "notes": "Log EVERY lead to a Google Sheet — a growing, filterable history."
+      }
+    },
+    {
+      "id": 5,
+      "module": "builtin:BasicRouter",
+      "version": 1,
+      "mapper": null,
+      "metadata": { "designer": { "x": 1200, "y": 0 } },
+      "routes": [
+        {
+          "flow": [
+            {
+              "id": 6,
+              "module": "slack:CreateMessage",
+              "version": 4,
+              "parameters": {},
+              "filter": {
+                "name": "Hot lead",
+                "conditions": [ [ { "a": "{{3.tier}}", "o": "text:equal", "b": "Hot" } ] ]
+              },
+              "mapper": {
+                "channel": "#sales-hot-leads",
+                "text": ":fire: *Hot lead ({{3.score}}/100)* — {{1.name}} @ {{1.company}}\n> {{3.reason}}\nReply to: {{1.email}}"
+              },
+              "metadata": {
+                "designer": { "x": 1500, "y": -150 },
+                "notes": "Hot leads: ping sales in Slack immediately."
+              }
+            }
+          ]
+        },
+        {
+          "flow": [
+            {
+              "id": 7,
+              "module": "email:ActionSendEmail",
+              "version": 3,
+              "parameters": {},
+              "filter": {
+                "name": "Warm lead",
+                "conditions": [ [ { "a": "{{3.tier}}", "o": "text:equal", "b": "Warm" } ] ]
+              },
+              "mapper": {
+                "to": [ "{{1.email}}" ],
+                "subject": "Thanks for reaching out, {{1.name}}",
+                "contentType": "text",
+                "html": "{{3.reply}}"
+              },
+              "metadata": {
+                "designer": { "x": 1500, "y": 150 },
+                "notes": "Warm leads: send the AI-drafted acknowledgement automatically."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "version": 1,
+    "scenario": {
+      "roundtrips": 1,
+      "maxErrors": 3,
+      "autoCommit": true,
+      "sequential": false,
+      "confidential": false,
+      "dataloss": false,
+      "dlq": false
+    },
+    "designer": { "orphans": [] },
+    "zone": "eu1.make.com",
+    "notes": "Cold leads simply fall through to the Sheet log (no route filter matches). Replace the Google Sheet ID and connect Gemini (HTTP header), Google Sheets, Slack, and email before running."
+  }
+}

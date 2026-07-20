@@ -1,0 +1,130 @@
+{
+  "name": "Weekly Operations Digest",
+  "description": "Every Monday 07:00, summarize an Excel table with AI and post the digest to Teams + email.",
+  "definition": {
+    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "$connections": { "type": "Object", "defaultValue": {} }
+    },
+    "triggers": {
+      "Every_Monday_07_00": {
+        "type": "Recurrence",
+        "recurrence": {
+          "frequency": "Week",
+          "interval": 1,
+          "schedule": { "hours": [ "7" ], "weekDays": [ "Monday" ] },
+          "timeZone": "Singapore Standard Time"
+        }
+      }
+    },
+    "actions": {
+      "List_rows_present_in_a_table": {
+        "type": "OpenApiConnection",
+        "runAfter": {},
+        "inputs": {
+          "host": {
+            "connectionName": "shared_excelonlinebusiness",
+            "operationId": "GetItems",
+            "apiId": "/providers/Microsoft.PowerApps/apis/shared_excelonlinebusiness"
+          },
+          "parameters": {
+            "source": "me",
+            "drive": "OneDrive",
+            "file": "REPLACE_WITH_WORKBOOK_ID",
+            "table": "OpsMetrics"
+          }
+        }
+      },
+      "Build_rows_text": {
+        "type": "Select",
+        "runAfter": { "List_rows_present_in_a_table": [ "Succeeded" ] },
+        "inputs": {
+          "from": "@outputs('List_rows_present_in_a_table')?['body/value']",
+          "select": "@concat(item()?['Metric'], ': ', item()?['ThisWeek'], ' (prev ', item()?['LastWeek'], ')')"
+        }
+      },
+      "HTTP_Gemini_summary": {
+        "type": "Http",
+        "runAfter": { "Build_rows_text": [ "Succeeded" ] },
+        "inputs": {
+          "method": "POST",
+          "uri": "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent",
+          "headers": {
+            "x-goog-api-key": "@parameters('$connections')['gemini']['key']",
+            "Content-Type": "application/json"
+          },
+          "body": {
+            "contents": [
+              {
+                "parts": [
+                  {
+                    "text": "@{concat('You are an operations analyst. From this week-over-week metric list, return ONLY compact JSON: {\"headline\":\"one sentence\",\"wins\":[\"...\"],\"risks\":[\"...\"],\"actions\":[\"...\"]}. Metrics: ', join(body('Build_rows_text'), '; '))}"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "Parse_summary": {
+        "type": "ParseJson",
+        "runAfter": { "HTTP_Gemini_summary": [ "Succeeded" ] },
+        "inputs": {
+          "content": "@body('HTTP_Gemini_summary')?['candidates'][0]?['content']?['parts'][0]?['text']",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "headline": { "type": "string" },
+              "wins": { "type": "array", "items": { "type": "string" } },
+              "risks": { "type": "array", "items": { "type": "string" } },
+              "actions": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        }
+      },
+      "Post_card_in_Teams": {
+        "type": "OpenApiConnection",
+        "runAfter": { "Parse_summary": [ "Succeeded" ] },
+        "inputs": {
+          "host": {
+            "connectionName": "shared_teams",
+            "operationId": "PostCardToConversation",
+            "apiId": "/providers/Microsoft.PowerApps/apis/shared_teams"
+          },
+          "parameters": {
+            "poster": "Flow bot",
+            "location": "Channel",
+            "body": {
+              "recipient": { "channelId": "REPLACE_WITH_TEAMS_CHANNEL_ID" },
+              "messageBody": "**Weekly Ops Digest**\n\n@{body('Parse_summary')?['headline']}\n\n**Wins:** @{join(body('Parse_summary')?['wins'], '; ')}\n\n**Risks:** @{join(body('Parse_summary')?['risks'], '; ')}\n\n**Actions:** @{join(body('Parse_summary')?['actions'], '; ')}"
+            }
+          }
+        }
+      },
+      "Send_an_email_V2": {
+        "type": "OpenApiConnection",
+        "runAfter": { "Post_card_in_Teams": [ "Succeeded" ] },
+        "inputs": {
+          "host": {
+            "connectionName": "shared_office365",
+            "operationId": "SendEmailV2",
+            "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+          },
+          "parameters": {
+            "emailMessage/To": "ops-leads@yourco.com",
+            "emailMessage/Subject": "Weekly Ops Digest",
+            "emailMessage/Body": "<h2>Weekly Ops Digest</h2><p><b>@{body('Parse_summary')?['headline']}</b></p><p><b>Wins:</b> @{join(body('Parse_summary')?['wins'], '; ')}</p><p><b>Risks:</b> @{join(body('Parse_summary')?['risks'], '; ')}</p><p><b>Actions:</b> @{join(body('Parse_summary')?['actions'], '; ')}</p>",
+            "emailMessage/Importance": "Normal"
+          }
+        }
+      }
+    },
+    "outputs": {}
+  },
+  "connectionReferences": {
+    "shared_excelonlinebusiness": { "connectionName": "Excel Online (Business)" },
+    "shared_teams": { "connectionName": "Microsoft Teams" },
+    "shared_office365": { "connectionName": "Office 365 Outlook" }
+  }
+}

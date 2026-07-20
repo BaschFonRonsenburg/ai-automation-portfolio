@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 700" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif">
+  <!-- page -->
+  <rect width="640" height="700" rx="10" fill="#eef3f8"/>
+
+  <!-- window bar -->
+  <rect x="0" y="0" width="640" height="40" rx="10" fill="#e0e8f1"/>
+  <rect x="0" y="20" width="640" height="20" fill="#e0e8f1"/>
+  <circle cx="24" cy="20" r="6" fill="#ff5f57"/>
+  <circle cx="44" cy="20" r="6" fill="#febc2e"/>
+  <circle cx="64" cy="20" r="6" fill="#28c840"/>
+  <text x="320" y="25" text-anchor="middle" font-size="12" fill="#5f7893">Power Automate — Weekly Operations Digest</text>
+
+  <text x="40" y="72" font-size="17" font-weight="800" fill="#0b3d66">Weekly Operations Digest</text>
+  <text x="40" y="92" font-size="12.5" fill="#5f7893">Mon 07:00 → read Excel table → AI summary → Teams card + email</text>
+
+  <!-- vertical connector -->
+  <line x1="80" y1="150" x2="80" y2="600" stroke="#c2d3e6" stroke-width="2"/>
+
+  <!-- 1 recurrence -->
+  <circle cx="80" cy="150" r="22" fill="#0b53ce"/>
+  <text x="80" y="156" text-anchor="middle" font-size="15" fill="#ffffff">⟳</text>
+  <rect x="120" y="122" width="480" height="56" rx="10" fill="#ffffff" stroke="#d7e2ee"/>
+  <text x="138" y="144" font-size="11" font-weight="700" letter-spacing="1" fill="#0b53ce">TRIGGER · RECURRENCE</text>
+  <text x="138" y="166" font-size="13.5" font-weight="600" fill="#0b3d66">Every Monday, 07:00</text>
+
+  <!-- 2 excel -->
+  <circle cx="80" cy="250" r="22" fill="#217346"/>
+  <text x="80" y="256" text-anchor="middle" font-size="14" fill="#ffffff">X</text>
+  <rect x="120" y="222" width="480" height="56" rx="10" fill="#ffffff" stroke="#d7e2ee"/>
+  <text x="138" y="244" font-size="11" font-weight="700" letter-spacing="1" fill="#217346">ACTION · EXCEL ONLINE</text>
+  <text x="138" y="266" font-size="13.5" font-weight="600" fill="#0b3d66">List rows in table  “OpsMetrics”</text>
+
+  <!-- 3 gemini http -->
+  <circle cx="80" cy="350" r="22" fill="#1a73e8"/>
+  <text x="80" y="356" text-anchor="middle" font-size="15" fill="#ffffff">✦</text>
+  <rect x="120" y="322" width="480" height="56" rx="10" fill="#ffffff" stroke="#d7e2ee"/>
+  <text x="138" y="344" font-size="11" font-weight="700" letter-spacing="1" fill="#1a73e8">ACTION · HTTP → GEMINI</text>
+  <text x="138" y="366" font-size="13.5" font-weight="600" fill="#0b3d66">Summarize → { headline, wins, risks, actions }</text>
+
+  <!-- 4 teams -->
+  <circle cx="80" cy="450" r="22" fill="#5059c9"/>
+  <text x="80" y="456" text-anchor="middle" font-size="14" fill="#ffffff">T</text>
+  <rect x="120" y="422" width="480" height="56" rx="10" fill="#ffffff" stroke="#d7e2ee"/>
+  <text x="138" y="444" font-size="11" font-weight="700" letter-spacing="1" fill="#5059c9">ACTION · MICROSOFT TEAMS</text>
+  <text x="138" y="466" font-size="13.5" font-weight="600" fill="#0b3d66">Post digest card to the ops channel</text>
+
+  <!-- 5 email -->
+  <circle cx="80" cy="550" r="22" fill="#0a66c2"/>
+  <text x="80" y="556" text-anchor="middle" font-size="14" fill="#ffffff">✉</text>
+  <rect x="120" y="522" width="480" height="56" rx="10" fill="#ffffff" stroke="#d7e2ee"/>
+  <text x="138" y="544" font-size="11" font-weight="700" letter-spacing="1" fill="#0a66c2">ACTION · OFFICE 365 OUTLOOK</text>
+  <text x="138" y="566" font-size="13.5" font-weight="600" fill="#0b3d66">Email the same digest to ops leads</text>
+
+  <!-- footer chips -->
+  <g font-size="11">
+    <rect x="40" y="616" width="150" height="24" rx="12" fill="#dfeaf7"/><text x="115" y="632" text-anchor="middle" fill="#0b53ce">Power Automate cloud flow</text>
+    <rect x="198" y="616" width="150" height="24" rx="12" fill="#dfeaf7"/><text x="273" y="632" text-anchor="middle" fill="#0b53ce">Microsoft 365 native</text>
+    <rect x="356" y="616" width="180" height="24" rx="12" fill="#fff4dc"/><text x="446" y="632" text-anchor="middle" fill="#8a5a00">HTTP action = premium connector</text>
+  </g>
+  <text x="40" y="664" font-size="10.5" fill="#7a8ca0">Exported as flow-definition.json (Logic Apps workflow schema).</text>
+</svg>

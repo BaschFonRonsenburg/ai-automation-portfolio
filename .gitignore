@@ -1,0 +1,18 @@
+# Featured projects are their own separate GitHub repos — linked from README, not vendored here
+/PC BUILD ADVISOR/
+/WEEKLY JOB REPORT/
+/COMPETITIVE EDGE CAMPAIGN/
+
+# Secrets & local env (never commit)
+.env
+.env.*
+!.env.example
+credentials.json
+token.json
+
+# Python / tooling junk
+__pycache__/
+*.pyc
+.tmp/
+.DS_Store
+Thumbs.db

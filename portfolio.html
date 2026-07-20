@@ -1,0 +1,602 @@
+<title>AI Automation — Portfolio</title>
+<style>
+  :root {
+    --ink: #0d1526;
+    --ink-2: #14203a;
+    --paper: #f5f7fa;
+    --paper-2: #eaeef4;
+    --card: #ffffff;
+    --line: #d9dfe8;
+    --line-soft: #e7ebf1;
+    --body: #3a4658;
+    --muted: #74839a;
+    --accent: #f0a63a;
+    --accent-deep: #b9791d;
+    --sig-trigger: #3f9d6b;
+    --sig-action: #3a76c4;
+    --sig-output: #b9791d;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, "Cascadia Mono", "Cascadia Code", "SF Mono", Consolas, "Liberation Mono", monospace;
+    --maxw: 1080px;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--body);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3 { color: var(--ink); margin: 0; text-wrap: balance; }
+
+  a { color: inherit; }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--accent-deep);
+  }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background: var(--ink);
+    color: #e7ecf4;
+    border-bottom: 1px solid #0a1120;
+  }
+  #graph {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    display: block; z-index: 0;
+  }
+  .hero-veil {
+    position: absolute; inset: 0; z-index: 1;
+    background:
+      radial-gradient(120% 90% at 12% 0%, rgba(240,166,58,0.10), transparent 55%),
+      linear-gradient(180deg, rgba(13,21,38,0.35) 0%, rgba(13,21,38,0.72) 70%, var(--ink) 100%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    position: relative; z-index: 2;
+    max-width: var(--maxw); margin: 0 auto;
+    padding: 108px 28px 92px;
+  }
+  .hero .eyebrow { color: var(--accent); }
+  .hero h1 {
+    color: #f7f9fc;
+    font-size: clamp(2.5rem, 6.4vw, 4.4rem);
+    line-height: 1.03;
+    letter-spacing: -0.028em;
+    font-weight: 800;
+    margin: 22px 0 0;
+    max-width: 15ch;
+  }
+  .hero h1 .live { color: var(--accent); }
+  .hero .lede {
+    margin: 26px 0 0;
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    line-height: 1.55;
+    color: #b8c4d6;
+    max-width: 60ch;
+  }
+  .hero-meta {
+    display: flex; flex-wrap: wrap; gap: 14px 40px;
+    margin-top: 40px; padding-top: 26px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+  }
+  .hero-meta .m-num {
+    font-family: var(--mono); font-size: 1.7rem; font-weight: 600;
+    color: #f7f9fc; font-variant-numeric: tabular-nums; line-height: 1;
+  }
+  .hero-meta .m-lab { font-size: 13px; color: #8ea0b8; margin-top: 6px; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 38px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-family: var(--mono); font-size: 14px; letter-spacing: 0.02em;
+    text-decoration: none; border-radius: 8px; padding: 13px 20px;
+    transition: transform .15s ease, background .15s ease, border-color .15s ease;
+  }
+  .btn.primary { background: var(--accent); color: #221604; font-weight: 700; }
+  .btn.primary:hover { background: #ffb951; transform: translateY(-1px); }
+  .btn.ghost { border: 1px solid rgba(255,255,255,0.28); color: #e7ecf4; }
+  .btn.ghost:hover { border-color: var(--accent); color: #fff; transform: translateY(-1px); }
+
+  /* ---------- Section scaffolding ---------- */
+  section { padding: 84px 0; }
+  .sec-head { margin-bottom: 40px; }
+  .sec-head h2 {
+    font-size: clamp(1.7rem, 3.4vw, 2.3rem);
+    letter-spacing: -0.02em; font-weight: 800; margin-top: 10px;
+  }
+  .sec-head p { margin: 12px 0 0; color: var(--muted); max-width: 62ch; }
+
+  /* ---------- Featured cards ---------- */
+  .cards { display: grid; gap: 22px; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 30px 32px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .card-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+  .card-head h3 { font-size: 1.45rem; letter-spacing: -0.015em; }
+  .tag {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent-deep); background: #fdf3e2; border: 1px solid #f4dcb4;
+    border-radius: 20px; padding: 4px 11px; font-weight: 600;
+  }
+  .card p.pitch { margin: 0; color: var(--body); max-width: 66ch; }
+
+  /* flow row — the signal-flow device */
+  .flow {
+    display: flex; align-items: stretch; flex-wrap: wrap; gap: 0;
+    background: linear-gradient(180deg, #fbfcfe, #f4f7fb);
+    border: 1px solid var(--line-soft); border-radius: 12px;
+    padding: 16px 14px; overflow-x: auto;
+  }
+  .node {
+    display: flex; flex-direction: column; gap: 3px;
+    padding: 8px 14px; min-width: max-content;
+  }
+  .node .n-kind {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+    font-weight: 600;
+  }
+  .node .n-label { font-size: 13.5px; color: var(--ink); font-weight: 500; white-space: nowrap; }
+  .node.trigger .n-kind { color: var(--sig-trigger); }
+  .node.action  .n-kind { color: var(--sig-action); }
+  .node.output  .n-kind { color: var(--sig-output); }
+  .arrow {
+    align-self: center; color: var(--muted); font-family: var(--mono);
+    padding: 0 2px; flex: none; opacity: 0.7;
+  }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    font-family: var(--mono); font-size: 12px; color: var(--body);
+    background: var(--paper-2); border: 1px solid var(--line-soft);
+    border-radius: 6px; padding: 4px 10px;
+  }
+  .card-foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .repo-link {
+    font-family: var(--mono); font-size: 13px; font-weight: 600; text-decoration: none;
+    color: var(--ink); border-bottom: 2px solid var(--accent); padding-bottom: 2px;
+    transition: color .15s ease;
+  }
+  .repo-link:hover { color: var(--accent-deep); }
+  .repo-link .arr { transition: transform .15s ease; display: inline-block; }
+  .repo-link:hover .arr { transform: translateX(3px); }
+
+  /* ---------- Platform breadth ---------- */
+  .breadth { background: var(--paper-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .mini {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 24px 24px; display: flex; flex-direction: column; gap: 12px;
+  }
+  .mini .plat { font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  .mini h3 { font-size: 1.15rem; letter-spacing: -0.01em; }
+  .mini p { margin: 0; font-size: 14.5px; color: var(--body); }
+  .mini .flow { background: #f7f9fc; padding: 12px 8px; }
+  .mini .node { padding: 5px 9px; }
+  .mini .node .n-label { font-size: 12px; }
+
+  /* ---------- Capabilities ---------- */
+  .cap-grid { display: grid; grid-template-columns: 220px 1fr; gap: 20px 40px; align-items: start; }
+  .cap-row { display: contents; }
+  .cap-name {
+    font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--ink); font-weight: 600; padding-top: 4px;
+  }
+  .cap-vals { display: flex; flex-wrap: wrap; gap: 8px; padding-bottom: 20px; border-bottom: 1px solid var(--line-soft); }
+  .cap-grid > .cap-vals:last-child { border-bottom: none; }
+
+  /* ---------- How I work ---------- */
+  .how { background: var(--ink); color: #dbe3ee; }
+  .how h2 { color: #f7f9fc; }
+  .how .sec-head p { color: #93a2b8; }
+  .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+  .how-item { border-top: 2px solid var(--accent); padding-top: 18px; }
+  .how-item h3 { color: #f7f9fc; font-size: 1.1rem; }
+  .how-item p { margin: 10px 0 0; font-size: 15px; color: #a9b6c8; }
+  .how-item .idx { font-family: var(--mono); font-size: 12px; color: var(--accent); letter-spacing: 0.1em; }
+
+  /* ---------- Contact ---------- */
+  .contact { text-align: center; padding: 96px 0; }
+  .contact h2 { font-size: clamp(1.9rem, 4vw, 2.6rem); letter-spacing: -0.02em; }
+  .contact p { color: var(--muted); margin: 14px auto 0; max-width: 48ch; }
+  .mail {
+    display: inline-flex; align-items: center; gap: 10px; margin-top: 30px;
+    font-family: var(--mono); font-size: 1.05rem; font-weight: 700; text-decoration: none;
+    color: var(--ink); background: var(--accent); border-radius: 10px; padding: 15px 26px;
+    transition: transform .15s ease, background .15s ease;
+  }
+  .mail:hover { background: #ffb951; transform: translateY(-2px); }
+
+  footer.foot { padding: 30px 0 48px; }
+  footer.foot .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  footer.foot small { color: var(--muted); font-size: 12.5px; }
+
+  a.txt-link { color: var(--accent-deep); text-decoration: underline; text-underline-offset: 2px; }
+
+  @media (max-width: 760px) {
+    .grid-3, .how-grid { grid-template-columns: 1fr; }
+    .cap-grid { grid-template-columns: 1fr; gap: 6px 0; }
+    .cap-name { padding-top: 16px; }
+    .hero-inner { padding: 84px 24px 72px; }
+    section { padding: 64px 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+
+<header class="hero">
+  <canvas id="graph" aria-hidden="true"></canvas>
+  <div class="hero-veil"></div>
+  <div class="hero-inner">
+    <p class="eyebrow">AI Automation · Portfolio</p>
+    <h1>Automations that do the <span class="live">repetitive work</span> for you.</h1>
+    <p class="lede">
+      I connect the tools a business already runs on — email, spreadsheets, Slack, Teams, a website
+      form — and put an AI model in the middle to handle the judgment: qualify, summarize, draft,
+      categorize. The busywork runs itself; a person still approves anything a customer sees.
+    </p>
+    <div class="hero-meta">
+      <div>
+        <div class="m-num">3</div>
+        <div class="m-lab">shipped, documented tools</div>
+      </div>
+      <div>
+        <div class="m-num">4</div>
+        <div class="m-lab">automation platforms</div>
+      </div>
+      <div>
+        <div class="m-num">$0</div>
+        <div class="m-lab">free-tier APIs to try them</div>
+      </div>
+    </div>
+    <div class="cta-row">
+      <a class="btn primary" href="#work">View the work ↓</a>
+      <a class="btn ghost" href="mailto:haban.johnryandc@gmail.com">Start a project</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="work" class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Featured work</p>
+      <h2>Three tools, built end-to-end and shipped.</h2>
+      <p>Each is a public repo with a full README. The row under every project is its actual pipeline —
+        what triggers it, where the AI reasons, and what it delivers.</p>
+    </div>
+
+    <div class="cards">
+
+      <article class="card">
+        <div class="card-head">
+          <h3>PC Build Advisor</h3>
+          <span class="tag">AI chatbot</span>
+        </div>
+        <p class="pitch">
+          Tell it a budget and a use-case; it returns a full PC build as a side-by-side
+          <strong>Intel/NVIDIA vs AMD</strong> table — prices in your local currency, a pick and reason
+          per part, store links, and an upgrade path. Answers stream in live.
+        </p>
+        <div class="flow">
+          <div class="node trigger"><span class="n-kind">Ask</span><span class="n-label">Budget + use-case</span></div>
+          <span class="arrow">→</span>
+          <div class="node action"><span class="n-kind">Reason</span><span class="n-label">Google Gemini</span></div>
+          <span class="arrow">→</span>
+          <div class="node output"><span class="n-kind">Deliver</span><span class="n-label">Side-by-side build table</span></div>
+        </div>
+        <div class="chips">
+          <span class="chip">Python</span><span class="chip">Streamlit</span><span class="chip">Google Gemini</span>
+        </div>
+        <div class="card-foot">
+          <span class="chip">Free to run · no paid APIs</span>
+          <a class="repo-link" href="https://github.com/BaschFonRonsenburg/pc-build-advisor">View repo <span class="arr">→</span></a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <h3>Weekly AI-Automation Job Report</h3>
+          <span class="tag">n8n · scheduled</span>
+        </div>
+        <p class="pitch">
+          Twice a week it pulls remote AI/automation part-time roles from three job boards, scores each
+          employer for legitimacy with a transparent <strong>0–100 Trust score</strong>, writes a
+          one-line AI summary per role, and emails a designed HTML report — Trust-score chart embedded,
+          styled spreadsheet attached.
+        </p>
+        <div class="flow">
+          <div class="node trigger"><span class="n-kind">Trigger</span><span class="n-label">Mon &amp; Thu 08:00</span></div>
+          <span class="arrow">→</span>
+          <div class="node action"><span class="n-kind">Gather</span><span class="n-label">3 job APIs</span></div>
+          <span class="arrow">→</span>
+          <div class="node action"><span class="n-kind">Score + write</span><span class="n-label">Trust score · Gemini</span></div>
+          <span class="arrow">→</span>
+          <div class="node output"><span class="n-kind">Deliver</span><span class="n-label">Email + Excel</span></div>
+        </div>
+        <div class="chips">
+          <span class="chip">n8n</span><span class="chip">Google Gemini</span><span class="chip">Gmail</span><span class="chip">Multi-source APIs</span>
+        </div>
+        <div class="card-foot">
+          <span class="chip">Retarget a client by changing one field</span>
+          <a class="repo-link" href="https://github.com/BaschFonRonsenburg/n8n-ai-automation-job-report">View repo <span class="arr">→</span></a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <h3>Competitive Edge Campaign Builder</h3>
+          <span class="tag">n8n · on-demand</span>
+        </div>
+        <p class="pitch">
+          Submit one company URL. It reads the site, discovers real competitors, analyzes where the
+          company is <strong>losing ground</strong>, writes a prioritized action plan and a ready-to-post
+          ad campaign, then emails a <strong>themed PDF</strong> that re-skins to match the industry.
+          Everything is a draft for human review.
+        </p>
+        <div class="flow">
+          <div class="node trigger"><span class="n-kind">Trigger</span><span class="n-label">Company URL</span></div>
+          <span class="arrow">→</span>
+          <div class="node action"><span class="n-kind">Discover</span><span class="n-label">Find + read competitors</span></div>
+          <span class="arrow">→</span>
+          <div class="node action"><span class="n-kind">Analyze + write</span><span class="n-label">Gaps + campaign · Gemini</span></div>
+          <span class="arrow">→</span>
+          <div class="node output"><span class="n-kind">Deliver</span><span class="n-label">Themed PDF by email</span></div>
+        </div>
+        <div class="chips">
+          <span class="chip">n8n</span><span class="chip">Google Gemini</span><span class="chip">DuckDuckGo</span><span class="chip">PDFShift</span><span class="chip">Gmail</span>
+        </div>
+        <div class="card-foot">
+          <span class="chip">Auto-themes to the client's industry</span>
+          <a class="repo-link" href="https://github.com/BaschFonRonsenburg/marketing-automation">View repo <span class="arr">→</span></a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="breadth">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Platform breadth</p>
+        <h2>The same approach, on whatever platform you already use.</h2>
+        <p>n8n is where I go deepest, but the design is platform-agnostic. Here it is built on the three
+          other major no-code platforms — each a self-contained demo with its own README and a
+          reference/importable definition.</p>
+      </div>
+      <div class="grid-3">
+
+        <div class="mini">
+          <span class="plat">Make.com</span>
+          <h3>Lead Enrichment &amp; Routing</h3>
+          <p>A form lead comes in; AI qualifies and scores it, every lead is logged, and the hot ones
+            ping sales while warm ones get an auto-reply.</p>
+          <div class="flow">
+            <div class="node trigger"><span class="n-kind">Form</span><span class="n-label">Lead in</span></div>
+            <span class="arrow">→</span>
+            <div class="node action"><span class="n-kind">AI</span><span class="n-label">Qualify</span></div>
+            <span class="arrow">→</span>
+            <div class="node output"><span class="n-kind">Route</span><span class="n-label">Slack / reply</span></div>
+          </div>
+        </div>
+
+        <div class="mini">
+          <span class="plat">Zapier</span>
+          <h3>Support Email Triage</h3>
+          <p>New support email → AI categorizes it and drafts a reply → a Gmail draft a human approves
+            before it ever reaches the customer.</p>
+          <div class="flow">
+            <div class="node trigger"><span class="n-kind">Email</span><span class="n-label">New ticket</span></div>
+            <span class="arrow">→</span>
+            <div class="node action"><span class="n-kind">AI</span><span class="n-label">Draft</span></div>
+            <span class="arrow">→</span>
+            <div class="node output"><span class="n-kind">Review</span><span class="n-label">Gmail draft</span></div>
+          </div>
+        </div>
+
+        <div class="mini">
+          <span class="plat">Power Automate</span>
+          <h3>Weekly Operations Digest</h3>
+          <p>Every Monday it reads an Excel metrics table, has AI summarize the week, and posts the
+            digest to Teams and email — the status update writes itself.</p>
+          <div class="flow">
+            <div class="node trigger"><span class="n-kind">Mon 07:00</span><span class="n-label">Excel</span></div>
+            <span class="arrow">→</span>
+            <div class="node action"><span class="n-kind">AI</span><span class="n-label">Summarize</span></div>
+            <span class="arrow">→</span>
+            <div class="node output"><span class="n-kind">Post</span><span class="n-label">Teams + email</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Capabilities</p>
+      <h2>What I bring to a build.</h2>
+    </div>
+    <div class="cap-grid">
+      <div class="cap-name">Platforms</div>
+      <div class="cap-vals">
+        <span class="chip">n8n (deep)</span><span class="chip">Make.com</span><span class="chip">Zapier</span><span class="chip">Power Automate</span>
+      </div>
+      <div class="cap-name">AI / LLM</div>
+      <div class="cap-vals">
+        <span class="chip">Google Gemini</span><span class="chip">Prompt design</span><span class="chip">Structured JSON output</span><span class="chip">Free-tier batching</span><span class="chip">Human-in-the-loop review</span>
+      </div>
+      <div class="cap-name">Apps &amp; delivery</div>
+      <div class="cap-vals">
+        <span class="chip">Gmail / Outlook</span><span class="chip">Sheets / Excel</span><span class="chip">Slack / Teams</span><span class="chip">Webhooks &amp; forms</span><span class="chip">Designed HTML email</span><span class="chip">PDF reports</span><span class="chip">Styled spreadsheets</span>
+      </div>
+      <div class="cap-name">Engineering</div>
+      <div class="cap-vals">
+        <span class="chip">Python</span><span class="chip">Streamlit</span><span class="chip">Scraping &amp; enrichment</span><span class="chip">Scheduled &amp; event-driven</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="how">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">How I work</p>
+        <h2>Built to hand over, not to babysit.</h2>
+        <p>Every automation is made for a non-technical owner to actually run.</p>
+      </div>
+      <div class="how-grid">
+        <div class="how-item">
+          <span class="idx">01</span>
+          <h3>Yours to run</h3>
+          <p>A clear README, credentials kept out of the code — you bring your own keys — and a design
+            that retargets to a new client by changing a field or two.</p>
+        </div>
+        <div class="how-item">
+          <span class="idx">02</span>
+          <h3>Free-tier first</h3>
+          <p>Everything is built to prove out on free API tiers before anyone pays for scale, so you can
+            see it work with no upfront cost.</p>
+        </div>
+        <div class="how-item">
+          <span class="idx">03</span>
+          <h3>Human in the loop</h3>
+          <p>Anything a customer sees is a draft for approval by default. The automation does the work;
+            you decide what goes out.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact">
+    <div class="wrap">
+      <p class="eyebrow">Let's build</p>
+      <h2>Have a repetitive process worth automating?</h2>
+      <p>Tell me the workflow you keep doing by hand. I'll show you what it looks like when it runs itself.</p>
+      <a class="mail" href="mailto:haban.johnryandc@gmail.com">✦ haban.johnryandc@gmail.com</a>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <small>AI Automation — Portfolio · Ryan</small>
+    <small>Project pipelines shown are the real flow of each build. <a class="txt-link" href="https://github.com/BaschFonRonsenburg">github.com/BaschFonRonsenburg</a></small>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var canvas = document.getElementById('graph');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var nodes = [], edges = [], W = 0, H = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    function build() {
+      var host = canvas.parentElement;
+      W = host.clientWidth; H = host.clientHeight;
+      canvas.width = W * dpr; canvas.height = H * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      nodes = [];
+      var cols = Math.max(4, Math.round(W / 190));
+      var rows = Math.max(3, Math.round(H / 150));
+      for (var r = 0; r < rows; r++) {
+        for (var c = 0; c < cols; c++) {
+          nodes.push({
+            x: (c + 0.5) / cols * W + (Math.random() - 0.5) * 60,
+            y: (r + 0.5) / rows * H + (Math.random() - 0.5) * 50,
+            r: 1.6 + Math.random() * 1.8
+          });
+        }
+      }
+      edges = [];
+      for (var i = 0; i < nodes.length; i++) {
+        for (var j = i + 1; j < nodes.length; j++) {
+          var dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
+          var d = Math.sqrt(dx * dx + dy * dy);
+          if (d < W / cols * 1.5) {
+            edges.push({ a: i, b: j, len: d, t: Math.random(), speed: 0.0016 + Math.random() * 0.0022, live: Math.random() < 0.5 });
+          }
+        }
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      // edges
+      for (var e = 0; e < edges.length; e++) {
+        var a = nodes[edges[e].a], b = nodes[edges[e].b];
+        ctx.strokeStyle = 'rgba(120,145,180,0.10)';
+        ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+      }
+      // nodes
+      for (var n = 0; n < nodes.length; n++) {
+        ctx.fillStyle = 'rgba(150,172,200,0.30)';
+        ctx.beginPath(); ctx.arc(nodes[n].x, nodes[n].y, nodes[n].r, 0, Math.PI * 2); ctx.fill();
+      }
+      // travelling signals
+      for (var s = 0; s < edges.length; s++) {
+        var ed = edges[s];
+        if (!ed.live) continue;
+        var na = nodes[ed.a], nb = nodes[ed.b];
+        var px = na.x + (nb.x - na.x) * ed.t;
+        var py = na.y + (nb.y - na.y) * ed.t;
+        var glow = ctx.createRadialGradient(px, py, 0, px, py, 7);
+        glow.addColorStop(0, 'rgba(240,166,58,0.85)');
+        glow.addColorStop(1, 'rgba(240,166,58,0)');
+        ctx.fillStyle = glow;
+        ctx.beginPath(); ctx.arc(px, py, 7, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = 'rgba(255,210,130,0.95)';
+        ctx.beginPath(); ctx.arc(px, py, 1.7, 0, Math.PI * 2); ctx.fill();
+      }
+    }
+
+    function tick() {
+      for (var s = 0; s < edges.length; s++) {
+        if (!edges[s].live) continue;
+        edges[s].t += edges[s].speed;
+        if (edges[s].t > 1) { edges[s].t = 0; edges[s].live = Math.random() < 0.7; }
+      }
+      draw();
+      raf = requestAnimationFrame(tick);
+    }
+
+    var raf;
+    build();
+    draw();
+    if (!reduce) tick();
+
+    var rt;
+    window.addEventListener('resize', function () {
+      clearTimeout(rt);
+      rt = setTimeout(function () {
+        if (raf) cancelAnimationFrame(raf);
+        build(); draw();
+        if (!reduce) tick();
+      }, 180);
+    });
+  })();
+</script>
