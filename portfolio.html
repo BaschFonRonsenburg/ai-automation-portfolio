@@ -178,13 +178,14 @@
   }
   ol.steps li {
     counter-increment: step;
-    display: grid; grid-template-columns: 26px 1fr; gap: 12px; align-items: start;
+    position: relative; padding-left: 34px;
     font-size: 14.5px; line-height: 1.5; color: var(--body); max-width: 68ch;
   }
   ol.steps li::before {
     content: counter(step, decimal-leading-zero);
+    position: absolute; left: 0; top: 1px;
     font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--accent-deep);
-    padding-top: 2px; font-variant-numeric: tabular-nums;
+    font-variant-numeric: tabular-nums;
   }
   ol.steps li b { color: var(--ink); font-weight: 600; }
 
