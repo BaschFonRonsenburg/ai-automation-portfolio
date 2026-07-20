@@ -108,6 +108,7 @@ approach working — but that's the floor, not the ceiling.
 
 - **Email:** haban.johnryandc@gmail.com
 - **OnlineJobs.ph:** https://www.onlinejobs.ph/jobseekers/info/2372797
+- **LinkedIn:** https://www.linkedin.com/in/john-ryan-haban07
 
 <sub>Project previews are illustrative mockups; each project's README explains how to render real output.
 The Make/Zapier/Power Automate demos live in this folder; the three featured projects are public GitHub
