@@ -1,5 +1,7 @@
 # AI Automation — Portfolio
 
+**John Ryan Haban — AI Automation Specialist**
+
 I build **AI-powered automations** that do real work: scoring and routing leads, triaging support,
 turning a single URL into a competitor analysis, and delivering designed reports straight to an inbox,
 a spreadsheet, Slack, or Teams. Every project here runs on **free-tier APIs** (no scraping, no paid
@@ -12,7 +14,7 @@ the repetitive work runs itself.
 
 ---
 
-## Featured projects
+## Projects
 
 ### 🖥️ PC Build Advisor — *AI chatbot*
 Tell it a budget and use-case; it returns a full PC build as a side-by-side **Intel/NVIDIA vs AMD**
@@ -65,7 +67,7 @@ re-skins to match the company's industry. Everything is a draft for human review
 
 ---
 
-## Also built on — platform breadth
+## Also built on these platforms
 
 The same automation approach, shown on the other major no-code platforms. Each is a self-contained demo
 with its own README, an importable/reference definition, and a mockup.
