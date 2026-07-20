@@ -13,6 +13,7 @@ token.json
 # Personal résumé — kept local, not published to this public repo
 resume.html
 resume.md
+resume.pdf
 
 # Python / tooling junk
 __pycache__/
