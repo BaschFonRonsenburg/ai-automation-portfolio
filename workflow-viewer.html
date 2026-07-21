@@ -49,7 +49,7 @@ button{font-family:inherit;color:inherit;cursor:pointer}
   background-size:26px 26px}
 .canvas-wrap.grabbing{cursor:grabbing}
 .canvas{position:absolute;top:0;left:0;transform-origin:0 0;will-change:transform}
-.edges{position:absolute;top:0;left:0;overflow:visible;pointer-events:none}
+.edges{position:absolute;top:0;left:0;overflow:visible;pointer-events:none;transform-origin:0 0;will-change:transform}
 
 /* ---- node ---- */
 .node{position:absolute;width:212px;background:var(--panel);border:1px solid var(--line);
@@ -323,7 +323,7 @@ function drawEdges(wf,byName){
 }
 
 /* ---------- pan / zoom ---------- */
-function apply(){canvas.style.transform='translate('+view.x+'px,'+view.y+'px) scale('+view.k+')';}
+function apply(){var t='translate('+view.x+'px,'+view.y+'px) scale('+view.k+')';canvas.style.transform=t;edges.style.transform=t;}
 function fit(W,H){
   const r=wrap.getBoundingClientRect();
   const k=Math.min(1.1,(r.width-40)/W,(r.height-40)/H);
