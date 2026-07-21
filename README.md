@@ -2,6 +2,8 @@
 
 **John Ryan Haban — AI Automation Specialist**
 
+🔗 **Live portfolio:** https://jrhaban-automation.vercel.app
+
 I build **AI-powered automations** that do real work: scoring and routing leads, triaging support,
 turning a single URL into a competitor analysis, and delivering designed reports straight to an inbox,
 a spreadsheet, Slack, or Teams. Every project here runs on **free-tier APIs** (no scraping, no paid
