@@ -1,0 +1,26 @@
+# Files that must NOT be published to the public Vercel site.
+# The deployed site is just index.html (the portfolio) + its assets.
+
+# Personal résumé — kept local, never published
+resume.html
+resume.md
+resume.pdf
+
+# Secrets
+.env
+.env.*
+credentials.json
+token.json
+
+# Featured projects live in their own repos (also gitignored)
+/PC BUILD ADVISOR/
+/WEEKLY JOB REPORT/
+/COMPETITIVE EDGE CAMPAIGN/
+/RIGFORGE STOREFRONT/
+
+# Tooling / junk
+node_modules/
+.git/
+.tmp/
+*.zip
+__pycache__/
