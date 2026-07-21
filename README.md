@@ -47,6 +47,7 @@ HTML report** with a Trust-score chart and a styled spreadsheet attached.
 4. The model writes a one-line summary per role, then it emails a designed report with a Trust-score chart plus a styled spreadsheet attached.
 
 **Stack:** n8n · Google Gemini · Gmail · multi-source job APIs &nbsp;•&nbsp; **Repo:** https://github.com/BaschFonRonsenburg/n8n-ai-automation-job-report
+&nbsp;•&nbsp; **Explore the build:** [interactive workflow viewer](https://claude.ai/code/artifact/47c31da6-2ce0-49ba-ae23-90bf107fde91#job-report) — click any node to read its real code (no n8n needed)
 
 ---
 
@@ -64,6 +65,7 @@ re-skins to match the company's industry. Everything is a draft for human review
 4. It drafts a full campaign — email + social posts — and emails a polished PDF that re-skins to the company's industry. Everything is a draft for your review.
 
 **Stack:** n8n · Google Gemini · DuckDuckGo · PDFShift · Gmail &nbsp;•&nbsp; **Repo:** https://github.com/BaschFonRonsenburg/marketing-automation
+&nbsp;•&nbsp; **Explore the build:** [interactive workflow viewer](https://claude.ai/code/artifact/47c31da6-2ce0-49ba-ae23-90bf107fde91#competitive-edge) — click any node to read its real code (no n8n needed)
 
 ---
 

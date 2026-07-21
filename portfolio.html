@@ -217,6 +217,8 @@
   .repo-link:hover { color: var(--accent-deep); }
   .repo-link .arr { transition: transform .15s ease; display: inline-block; }
   .repo-link:hover .arr { transform: translateX(3px); }
+  .foot-links { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+  .repo-link.flow { border-bottom-color: var(--accent-deep); }
 
   /* ---------- Platform breadth (subgroup of Projects) ---------- */
   .breadth { background: var(--paper-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
@@ -437,7 +439,10 @@
         </div>
         <div class="card-foot">
           <span class="chip">Retarget a client by changing one field</span>
-          <a class="repo-link" href="https://github.com/BaschFonRonsenburg/n8n-ai-automation-job-report" target="_blank" rel="noopener">View repo <span class="arr">→</span></a>
+          <span class="foot-links">
+            <a class="repo-link flow" href="https://claude.ai/code/artifact/47c31da6-2ce0-49ba-ae23-90bf107fde91#job-report" target="_blank" rel="noopener">Open workflow <span class="arr">↗</span></a>
+            <a class="repo-link" href="https://github.com/BaschFonRonsenburg/n8n-ai-automation-job-report" target="_blank" rel="noopener">View repo <span class="arr">→</span></a>
+          </span>
         </div>
       </article>
 
@@ -476,7 +481,10 @@
         </div>
         <div class="card-foot">
           <span class="chip">Auto-themes to the client's industry</span>
-          <a class="repo-link" href="https://github.com/BaschFonRonsenburg/marketing-automation" target="_blank" rel="noopener">View repo <span class="arr">→</span></a>
+          <span class="foot-links">
+            <a class="repo-link flow" href="https://claude.ai/code/artifact/47c31da6-2ce0-49ba-ae23-90bf107fde91#competitive-edge" target="_blank" rel="noopener">Open workflow <span class="arr">↗</span></a>
+            <a class="repo-link" href="https://github.com/BaschFonRonsenburg/marketing-automation" target="_blank" rel="noopener">View repo <span class="arr">→</span></a>
+          </span>
         </div>
       </article>
 
